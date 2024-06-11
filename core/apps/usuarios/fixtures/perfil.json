@@ -1,0 +1,18 @@
+[
+    {
+        "model":"apps_usuarios.Perfil",
+        "pk": 1,
+        "fields":{
+            "descricao":"Gestor",
+            "status":true
+        }
+    },
+    {
+        "model":"apps_usuarios.Perfil",
+        "pk": 2,
+        "fields":{
+            "descricao":"Funcionario",
+            "status":true
+        }
+    }
+]
