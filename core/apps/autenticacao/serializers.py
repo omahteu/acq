@@ -17,7 +17,6 @@ from .password_validation import validators
 from .models import Usuario
 from .utils.validacao_cpf import cpf
 from .utils.validacao_email import email
-from .utils.validacao_uf import uf
 from apps.hidricos.models import Hidricos
 from apps.clientes.models import Cliente
 
@@ -33,14 +32,12 @@ class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(required=True, max_length=68, min_length=8, write_only=True)
     nome = serializers.CharField(max_length=100, required=False)
     cpf = serializers.CharField(required=True, max_length=11)
-    estado = serializers.CharField(required=False, max_length=2)
-    cidade = serializers.CharField(required=False)
     bacia_responsavel = serializers.CharField(required=True)
     cliente = serializers.CharField(required=True)
 
     class Meta:
         model = Usuario
-        fields = ['id', 'email', 'password', 'nome', 'perfis', "cpf", "estado", "cidade", "bacia_responsavel", "cliente"]
+        fields = ['id', 'email', 'password', 'nome', 'perfis', "cpf", "bacia_responsavel", "cliente"]
 
     def validate_email(self, value):
         if not email(value):
@@ -64,11 +61,6 @@ class RegisterSerializer(serializers.ModelSerializer):
     def validate_cpf(self, value):
         if not cpf(value):
             raise serializers.ValidationError("CPF inválido.")
-        return value
-    
-    def validate_estado(self, value):
-        if not uf(value):
-            raise serializers.ValidationError("Email inválido.")
         return value
     
     def validate_bacia_responsavel(self, value):

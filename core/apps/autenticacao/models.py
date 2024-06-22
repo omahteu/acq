@@ -43,10 +43,7 @@ class Usuario(AbstractBaseUser, PermissionsMixin):
     email = models.CharField(max_length=50, unique=True)
     nome = models.CharField(max_length=100, blank=True, null=True)
     perfis = models.ManyToManyField(Perfil)
-    
     cpf = models.CharField(max_length=14, unique=True)
-    estado = models.CharField(max_length=2)
-    cidade = models.CharField(max_length=100)
     bacia_responsavel = models.ForeignKey(Hidricos, on_delete=models.CASCADE)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
 
