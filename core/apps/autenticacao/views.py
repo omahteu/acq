@@ -37,7 +37,8 @@ class RegisterView(GenericAPIView):
     @swagger_auto_schema(request_body=RegisterSerializer, responses={status.HTTP_200_OK: RegisterResponseSerializer})
     def post(self, request):
         data = request.data
-        if check_request_data(data, ["email", "password", "nome", "perfis", "cpf", "bacia_responsavel", "cliente"]):
+        print(data)
+        if check_request_data(data, ["email", "password", "nome", "perfis", "cpf", "estado", "cidade", "bacia_responsavel", "cliente"]):
             return Response(
                 {'error': 'Content is not corrected.'},
                 status=status.HTTP_400_BAD_REQUEST,
