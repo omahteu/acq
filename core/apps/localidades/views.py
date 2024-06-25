@@ -2,6 +2,7 @@ from .models import Localidade
 from .serializers import LocalidadeSerializer
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class LocalidadeViewsets(viewsets.ModelViewSet):
@@ -9,6 +10,8 @@ class LocalidadeViewsets(viewsets.ModelViewSet):
     serializer_class = LocalidadeSerializer
     http_method_names = ["post", "get", "patch", "delete"]
     lookup_field = "id"
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['nome', 'cidade']
     
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)

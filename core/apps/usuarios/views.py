@@ -6,31 +6,15 @@ from rest_framework.decorators import action
 
 from drf_yasg.utils import swagger_auto_schema
 from ..autenticacao.models import Usuario
-
-
-# class UsuarioViewsets(viewsets.ModelViewSet):
-#     queryset = CustomUser.objects.all()
-#     serializer_class = UserSerializer
-#     http_method_names = ["post", "get", "patch", "delete"]
-#     lookup_field = "id"
-    
-#     def create(self, request, *args, **kwargs):
-#         serializer = self.get_serializer(data=request.data)
-#         serializer.is_valid(raise_exception=True)
-#         self.perform_create(serializer)
-#         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-#     @action(detail=False, methods=["get"], url_path="funcao")
-#     def filtro(self, request, *args, **kwargs):
-#         queryset = self.get_queryset().filter(perfil=request.data["funcao"])
-#         serializer = self.get_serializer(queryset, many=True)
-#         return Response(serializer.data)
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class UsuariosView(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
     http_method_names = ['get', 'delete']
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['perfis']
     
     def destroy(self, request, *args, **kwargs):
         user = self.get_object()

@@ -3,6 +3,7 @@ from .serializers import HidricosSerializer
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class HidricosViewsets(viewsets.ModelViewSet):
@@ -10,6 +11,8 @@ class HidricosViewsets(viewsets.ModelViewSet):
     serializer_class = HidricosSerializer
     http_method_names = ["post", "get", "patch", "delete"]
     lookup_field = "id"
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['nome', 'estado']
     
     @action(detail=False, methods=["get"], url_path="nome_estado")
     def nome_estado(self, request, *args, **kwargs):

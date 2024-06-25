@@ -1,4 +1,5 @@
 from django.db import models
+from apps.hidricos.models import Hidricos
 
 
 class FisicoQuimico(models.Model):
@@ -29,3 +30,4 @@ class FisicoQuimico(models.Model):
     turbidez = models.FloatField()
     oxigenio_dissolvido = models.FloatField()
     cloro_residual_livre = models.FloatField()
+    bacia = models.ForeignKey(Hidricos, on_delete=models.CASCADE)

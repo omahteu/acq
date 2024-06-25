@@ -1,7 +1,9 @@
 from django.db import models
+from apps.hidricos.models import Hidricos
 
 
 class Microbiologico(models.Model):
     coliformes_totais = models.FloatField()
     coliformes_fecais = models.FloatField()
     e_coli = models.FloatField()
+    bacia = models.ForeignKey(Hidricos, on_delete=models.CASCADE)
