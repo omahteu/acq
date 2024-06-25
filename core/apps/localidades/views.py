@@ -11,7 +11,7 @@ class LocalidadeViewsets(viewsets.ModelViewSet):
     http_method_names = ["post", "get", "patch", "delete"]
     lookup_field = "id"
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['nome', 'cidade']
+    filterset_fields = ['nome', 'cidade', 'hidricos']
     
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
