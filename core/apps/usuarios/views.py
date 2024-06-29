@@ -14,7 +14,7 @@ class UsuariosView(viewsets.ModelViewSet):
     serializer_class = UsuarioSerializer
     http_method_names = ['get', 'delete']
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['perfis']
+    filterset_fields = ['perfis', 'nome']
     
     def destroy(self, request, *args, **kwargs):
         user = self.get_object()

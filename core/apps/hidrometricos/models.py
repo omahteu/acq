@@ -6,7 +6,7 @@ class Hidrometrico(models.Model):
     pressao = models.FloatField()
     nivel_agua = models.FloatField()
     vazao = models.FloatField()
-    consumo = models.FloatField()
+    # consumo = models.FloatField()
     bacia = models.ForeignKey(Hidricos, on_delete=models.CASCADE)
     
     def __str__(self) -> str:
