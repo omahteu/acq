@@ -1,5 +1,6 @@
 from django.db import models
 from apps.hidricos.models import Hidricos
+from django.utils import timezone
 
 
 class FisicoQuimico(models.Model):
@@ -31,3 +32,4 @@ class FisicoQuimico(models.Model):
     # oxigenio_dissolvido = models.FloatField()
     cloro_residual_livre = models.FloatField(null=True)
     bacia = models.ForeignKey(Hidricos, on_delete=models.CASCADE)
+    data = models.DateField(default=timezone.now)
